@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+     tools {
+        maven 'Maven3'
+    }
+    stages {
+        stage ("checkout")  {
+            steps {
+            checkout logic here
+            }
+        }
+    
+        stage ('build')  {
+            steps {
+                sh "mvn clean install -f MyWebApp/pom.xml"
+            }
+        }
+    }
+
+/*** workspace clean up*/
+    post {
+        always {
+            cleanWs()
+        }
+    }   
+ }
