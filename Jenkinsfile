@@ -20,6 +20,9 @@ node {
         // }
 
     }
-    
+    stage('cleaning') {
+
+        sh "docker system prune -a"
+    }
     
 }
