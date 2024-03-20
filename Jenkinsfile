@@ -9,7 +9,7 @@ node {
         sh "pwd"
         sh "cd web-app"
         sh "pwd"
-        docker.build "web-app:${env.BUILD_ID} -f Dockerfile web-app/ "
+        docker.build "web-app:${env.BUILD_ID} -f Dockerfile ./web-app "
 
     }
     
