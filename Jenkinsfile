@@ -19,8 +19,6 @@ node {
         //         docker.build "web-app:${env.BUILD_ID}"
         //     }
         // }
-    
-    
     }
     
     
