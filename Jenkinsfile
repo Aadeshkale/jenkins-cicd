@@ -7,6 +7,7 @@ node {
 
     stage('build image') {
     sh 'cd web-app'
+    sh 'ls -la'
     docker.build "web-app:${env.BUILD_ID}"    
     }
     
