@@ -11,24 +11,25 @@ pipeline {
             }
         }
 
-        if (env.BRANCH_NAME == "deployment") {                                          
-            stage('build image') {
-            steps{
-               script{
-                    sh "pwd"
-                    // This step need to add jenkins user to docker diamon permission
-                    //   sudo usermod -a -G docker jenkins
-                    docker.build ("web-app:${env.BUILD_ID}", "./web-app")
-                    // Alternative way for change dir
-                    // dir("${env.WORKSPACE}/web-app"){
-                    //     script{
-                    //         docker.build "web-app:${env.BUILD_ID}"
-                    //     }
-                    // }
-               }
-            }
+                                                 
+        stage('build image') {
+            if (env.BRANCH_NAME == "deployment") { 
+                steps{
+                script{
+                        sh "pwd"
+                        // This step need to add jenkins user to docker diamon permission
+                        //   sudo usermod -a -G docker jenkins
+                        docker.build ("web-app:${env.BUILD_ID}", "./web-app")
+                        // Alternative way for change dir
+                        // dir("${env.WORKSPACE}/web-app"){
+                        //     script{
+                        //         docker.build "web-app:${env.BUILD_ID}"
+                        //     }
+                        // }
+                }
+                }
 
-        }
+            }
 
         }
         
