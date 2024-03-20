@@ -6,7 +6,9 @@ node {
     }
 
     stage('build image') {
-    sh 'cd web-app'
+    dir("${env.WORKSPACE}/web-app"){
+        sh "pwd"
+    }    
     sh 'ls -la'
     docker.build "web-app:${env.BUILD_ID}"    
     }
