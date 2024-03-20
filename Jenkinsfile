@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     stage('checkout') {
         git branch: 'main', url: 'https://github.com/Aadeshkale/jenkins-cicd.git'
         sh 'echo "code pulled.."'
@@ -21,8 +20,12 @@ pipeline {
         // }
 
     }
-    stage('cleaning') {
-        sh "docker system prune -a -f"
+    post { 
+        always { 
+            cleanWs()
+            sh "docker system prune -a -f"
+        }
     }
+
     
 }
