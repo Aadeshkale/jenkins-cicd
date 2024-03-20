@@ -8,12 +8,12 @@ node {
     stage('build image') {
         sh "cd web-app"
         sh "pwd"
-        // docker.build ("web-app:${env.BUILD_ID}","./web-app")
-        dir("${env.WORKSPACE}/web-app"){
-            script{
-                docker.build "web-app:${env.BUILD_ID}"
-            }
-        }
+        docker.build ("web-app:${env.BUILD_ID}"," -f ./web-app")
+        // dir("${env.WORKSPACE}/web-app"){
+        //     script{
+        //         docker.build "web-app:${env.BUILD_ID}"
+        //     }
+        // }
     }
     
     
