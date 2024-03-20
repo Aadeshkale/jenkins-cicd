@@ -13,13 +13,12 @@ node {
         
         docker.build ("web-app:${env.BUILD_ID}", "./web-app")
         // Alternative way for change dir
-        
         // dir("${env.WORKSPACE}/web-app"){
         //     script{
         //         docker.build "web-app:${env.BUILD_ID}"
         //     }
         // }
-        
+
     }
     
     
