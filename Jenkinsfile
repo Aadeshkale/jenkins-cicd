@@ -1,4 +1,5 @@
-node {
+pipeline {
+    agent any
 
     stage('checkout') {
         git branch: 'main', url: 'https://github.com/Aadeshkale/jenkins-cicd.git'
