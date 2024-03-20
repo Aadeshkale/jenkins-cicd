@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-
+        
         stage('checkout') {
 
             steps{
@@ -11,7 +11,8 @@ pipeline {
             }
         }
 
-        stage('build image') {
+        if (env.BRANCH_NAME == "deployment") {                                          
+            stage('build image') {
             steps{
                script{
                     sh "pwd"
@@ -28,6 +29,9 @@ pipeline {
             }
 
         }
+
+        }
+        
     }    
     // execute always at end of pipeline
     post { 
