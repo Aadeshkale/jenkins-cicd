@@ -21,6 +21,8 @@ pipeline {
             
               steps{
                     script{
+                        sh "echo ${env.GIT_BRANCH}"
+                        
                         if ( "${env.GIT_BRANCH}"  == "main") { 
                             sh "pwd"
                             // This step need to add jenkins user to docker diamon permission
