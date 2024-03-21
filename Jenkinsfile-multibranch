@@ -40,12 +40,17 @@ pipeline{
 
         }
 
-        stage('Clean Docker Images from agent'){
-
-            steps{
-                sh "docker system prune -f -a" 
+        post{
+            stage()
+            always{
+                stage(){
+                    steps{
+                        sh "docker system prune -f -a" 
+                    }
+                }
             }
         }
+
 
     }   
 }
