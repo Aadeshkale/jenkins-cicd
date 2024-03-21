@@ -33,7 +33,7 @@ pipeline{
         stage('Build Image'){
             steps{
                 script{
-                    docker.build (${app_name}:${env.BUILD_ID}", "./web-app") 
+                    docker.build ("${app_name}:${env.BUILD_ID}", "./web-app") 
                 }
             }
 
