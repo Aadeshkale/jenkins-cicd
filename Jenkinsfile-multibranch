@@ -44,7 +44,7 @@ pipeline{
             steps{
                 script{
                      sh """
-                     echo 'Image pushed to:${artifactory} 
+                        echo 'Image pushed to:${artifactory} 
                      """
                 }
             }
@@ -53,7 +53,7 @@ pipeline{
             steps{
                 script{
                      sh """ 
-                     echo 'Application Deployed TO:${server} 
+                        echo 'Application Deployed TO:${server} 
                      """
                 }
             }
