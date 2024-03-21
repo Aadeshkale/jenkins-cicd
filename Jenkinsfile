@@ -24,6 +24,7 @@ pipeline {
               steps{
                     script{
                         sh "echo ${env.BRANCH_NAME}"
+                        sh "echo ${env.GIT_BRANCH}"
 
                         if ( env.ALREADY_EXISTS == "true") { 
                             sh "echo inside if"
