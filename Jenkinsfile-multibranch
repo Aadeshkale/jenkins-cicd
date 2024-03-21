@@ -43,7 +43,7 @@ pipeline{
         post{
             stage()
             always{
-                stage(){
+                stage("Agent cleaning"){
                     steps{
                         sh "docker system prune -f -a" 
                     }
