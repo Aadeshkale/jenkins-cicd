@@ -2,7 +2,7 @@ pipeline{
     agent any
 
     stages{
-        stage(print-envs) {
+        stage("System ENVS") {
             step{
             sh """
                 echo ${env. branch}
