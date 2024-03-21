@@ -40,7 +40,9 @@ pipeline{
 
         stage('Clean Docker Images from agent'){
 
-            sh "docker system purne -a -f"
+            steps{
+                sh "docker system purne -a -f"
+            }
         }
 
     }   
