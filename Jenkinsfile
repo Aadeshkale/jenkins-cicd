@@ -8,9 +8,7 @@ pipeline {
 
             steps{
                 git branch: 'main', url: 'https://github.com/Aadeshkale/jenkins-cicd.git'
-                // sh 'echo "code pulled.."'
-                // sh 'echo ${env.GIT_BRANCH}'
-                sh 'printenv | sort'
+                sh 'echo "code pulled.."'
             }
         }
 
@@ -19,7 +17,7 @@ pipeline {
             
               steps{
                     script{
-                        if ( env.GIT_BRANCH == "origin/main") { 
+                        if ( env.GIT_BRANCH == "dev") { 
                             sh "echo inside if"
                             sh "pwd"
                             // This step need to add jenkins user to docker diamon permission
