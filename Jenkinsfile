@@ -23,7 +23,7 @@ pipeline {
                     script{
                         sh "echo ${env.BRANCH_NAME}"
 
-                        if ( "echo ${env.BRANCH_NAME}"  == "main") { 
+                        if ( "main" == BRANCH_NAME) { 
                             sh "echo inside if"
                             sh "pwd"
                             // This step need to add jenkins user to docker diamon permission
