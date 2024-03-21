@@ -3,12 +3,11 @@ pipeline{
 
     stages{
         stage("System ENVS") {
-            step{
-            sh """
-                echo ${env. branch}
-                echo ${printenv | sort }
-            """
-
+            steps{
+                sh """
+                    echo ${env. branch}
+                    echo ${printenv | sort }
+                """
             }
         }
     }   
