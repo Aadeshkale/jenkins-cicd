@@ -9,19 +9,31 @@ pipeline{
             }
         }
 
-        stage('Build Image'){
+        stage("Set variables according to env"){
             steps{
                 script{
                     if (env.GIT_BRANCH == 'main'){
                         
-                        docker.build ("web-app-prod:${env.BUILD_ID}", "./web-app") 
+                        app_name =  'web-app-prod'
                     
                     }
                     if (env.GIT_BRANCH == 'dev'){
                         
-                        docker.build ("web-app-dev:${env.BUILD_ID}", "./web-app") 
+                        app_name =  'web-app-dev'
                     
                     }
+
+                }
+
+            }
+
+        }
+
+
+        stage('Build Image'){
+            steps{
+                script{
+                    docker.build (${app_name}:${env.BUILD_ID}", "./web-app") 
                 }
             }
 
