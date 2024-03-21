@@ -1,0 +1,22 @@
+pipeline{
+    agent{
+        any
+    }
+
+    stages{
+        stage(print-envs) {
+            step{
+            sh """
+                echo ${env. branch}
+                echo ${printenv | sort }
+            """
+
+            }
+        }
+    }   
+
+
+
+
+
+}
