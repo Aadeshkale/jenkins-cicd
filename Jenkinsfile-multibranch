@@ -41,7 +41,6 @@ pipeline{
         }
 
         post{
-            stage()
             always{
                 stage("Agent cleaning"){
                     steps{
