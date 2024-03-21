@@ -9,11 +9,17 @@ pipeline{
             }
         }
 
-        
+        stage('Build Image'){
+            steps{
+                script{
+                    if (env.GGIT_BRANCH == 'main'){
+                        sh "echo This is main Branch"
+                    }
+                }
+            }
+
+        }
+
+
     }   
-
-
-
-
-
 }
