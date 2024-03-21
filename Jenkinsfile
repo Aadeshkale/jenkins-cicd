@@ -8,8 +8,8 @@ pipeline {
 
             steps{
                 git branch: 'main', url: 'https://github.com/Aadeshkale/jenkins-cicd.git'
-                sh 'echo "code pulled.."'
-                sh 'echo ${env.GIT_BRANCH}'
+                // sh 'echo "code pulled.."'
+                // sh 'echo ${env.GIT_BRANCH}'
                 sh 'printenv | sort'
             }
         }
