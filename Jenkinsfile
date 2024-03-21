@@ -1,7 +1,7 @@
 pipeline {
     environment {
         FULL_PATH_BRANCH = "${sh(script:'git name-rev --name-only HEAD', returnStdout: true)}"
-        GIT_BRANCH = FULL_PATH_BRANCH.substring(FULL_PATH_BRANCH.lastIndexOf('/') + 1, FULL_PATH_BRANCH.length())
+        BRANCH_NAME = FULL_PATH_BRANCH.substring(FULL_PATH_BRANCH.lastIndexOf('/') + 1, FULL_PATH_BRANCH.length())
     }
 
     agent any
@@ -21,9 +21,10 @@ pipeline {
             
               steps{
                     script{
-                        sh "echo ${env.GIT_BRANCH}"
+                        sh "echo ${env.BRANCH_NAME}"
 
-                        if ( $GIT_BRANCH  == "main") { 
+                        if ( ${BRANCH_NAME}  == "main") { 
+                            sh "echo inside if"
                             sh "pwd"
                             // This step need to add jenkins user to docker diamon permission
                             //   sudo usermod -a -G docker jenkins
