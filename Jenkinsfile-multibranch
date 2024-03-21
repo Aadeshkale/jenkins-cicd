@@ -15,11 +15,13 @@ pipeline{
                     if (env.GIT_BRANCH == 'main'){
                         
                         app_name =  'web-app-prod'
+                        server = 'prod-server'
                     
                     }
                     if (env.GIT_BRANCH == 'dev'){
                         
                         app_name =  'web-app-dev'
+                        server = 'dev-server'
                     
                     }
 
@@ -41,7 +43,7 @@ pipeline{
         stage('Clean Docker Images from agent'){
 
             steps{
-                sh "docker system purne -a -f"
+                sh "docker system prune -f -a" 
             }
         }
 
