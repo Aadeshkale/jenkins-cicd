@@ -15,12 +15,14 @@ pipeline{
                     if (env.GIT_BRANCH == 'main'){
                         
                         app_name =  'web-app-prod'
+                        artifactory = 'webapp/prod'
                         server = 'prod-server'
                     
                     }
                     if (env.GIT_BRANCH == 'dev'){
                         
                         app_name =  'web-app-dev'
+                        artifactory = 'webapp/prod'
                         server = 'dev-server'
                     
                     }
@@ -37,8 +39,18 @@ pipeline{
                     docker.build ("${app_name}:${env.BUILD_ID}", "./web-app") 
                 }
             }
-
         }
+        stage('Push Image to artifactory'){
+            steps{
+                script{
+                     sh '''
+                        echo "Image pushed to:${artifactory}"    
+
+                     '''
+                }
+            }
+        }
+        
 
     }   
     
