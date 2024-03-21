@@ -40,16 +40,16 @@ pipeline{
 
         }
 
-        post{
-            always{
-                stage("Agent cleaning"){
-                    steps{
-                        sh "docker system prune -f -a" 
-                    }
+    }   
+    
+    post{
+        
+        always{
+            stage("Agent cleaning"){
+                steps{
+                    sh "docker system prune -f -a" 
                 }
             }
         }
-
-
-    }   
+    }
 }
