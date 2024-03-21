@@ -1,11 +1,5 @@
 pipeline {
 
-    environment {
-        FULL_PATH_BRANCH = "${sh(script:'git name-rev --name-only HEAD', returnStdout: true)}"
-        BRANCH_NAME = FULL_PATH_BRANCH.substring(FULL_PATH_BRANCH.lastIndexOf('/') + 1, FULL_PATH_BRANCH.length())
-        ALREADY_EXISTS = "true"
-    }
-
     agent any
 
     stages {
@@ -23,9 +17,6 @@ pipeline {
             
               steps{
                     script{
-                        sh "echo ${env.BRANCH_NAME}"
-                        sh "echo ${env.GIT_BRANCH}"
-
                         if ( env.GIT_BRANCH == "origin/main") { 
                             sh "echo inside if"
                             sh "pwd"
