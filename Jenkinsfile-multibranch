@@ -44,9 +44,10 @@ pipeline{
             steps{
                 script{
                      sh '''
-                        echo 'Image pushed to:"${artifactory}"'    
+                        echo Image pushed to:${artifactory}    
 
                      '''
+                     sh "echo Image pushed to:${artifactory}"
                 }
             }
         }
