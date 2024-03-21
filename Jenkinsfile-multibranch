@@ -13,7 +13,14 @@ pipeline{
             steps{
                 script{
                     if (env.GIT_BRANCH == 'main'){
-                        sh "echo This is main Branch"
+                        
+                        docker.build ("web-app-prod:${env.BUILD_ID}", "./web-app") 
+                    
+                    }
+                    if (env.GIT_BRANCH == 'dev'){
+                        
+                        docker.build ("web-app-dev:${env.BUILD_ID}", "./web-app") 
+                    
                     }
                 }
             }
