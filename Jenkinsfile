@@ -26,7 +26,7 @@ pipeline {
                         sh "echo ${env.BRANCH_NAME}"
                         sh "echo ${env.GIT_BRANCH}"
 
-                        if ( env.ALREADY_EXISTS == "true") { 
+                        if ( env.GIT_BRANCH == "origin/main") { 
                             sh "echo inside if"
                             sh "pwd"
                             // This step need to add jenkins user to docker diamon permission
