@@ -2,11 +2,21 @@ pipeline{
     agent any
 
     stages{
-        stage("System ENVS") {
+        stage('checkout') {
+
+            steps{
+                git branch: 'main', url: 'https://github.com/Aadeshkale/jenkins-cicd.git'
+                sh 'echo "code pulled.."'
+            }
+        }
+        
+        stage("System-ENVS") {
             steps{
                 sh "echo ${printenv | sort }"
             }
         }
+
+        
     }   
 
 
