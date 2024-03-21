@@ -43,12 +43,12 @@ pipeline {
         
     }    
     // execute always at end of pipeline
-    // post { 
-    //     always { 
-    //         cleanWs()
-    //         sh "docker system prune -a -f"
-    //     }
-    // }
+    post { 
+        always { 
+            cleanWs()
+            sh "docker system prune -a -f"
+        }
+    }
 
     
 }
