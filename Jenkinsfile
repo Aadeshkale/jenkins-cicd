@@ -25,7 +25,7 @@ pipeline {
                     script{
                         sh "echo ${env.BRANCH_NAME}"
 
-                        if ( ALREADY_EXISTS == "true") { 
+                        if ( env.ALREADY_EXISTS == "true") { 
                             sh "echo inside if"
                             sh "pwd"
                             // This step need to add jenkins user to docker diamon permission
