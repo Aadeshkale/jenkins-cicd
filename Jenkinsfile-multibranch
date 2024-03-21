@@ -43,15 +43,19 @@ pipeline{
         stage('Push Image to artifactory'){
             steps{
                 script{
-                     sh """
-                        echo 'Image pushed to:${artifactory}    
-                        echo 'Image deployed to:${server} 
+                     sh """echo 'Image pushed to:${artifactory} 
                      """
-                    //  sh "echo Image pushed to:${artifactory}"
                 }
             }
         }
-        
+        stage('Deploy app'){
+            steps{
+                script{
+                     sh """echo 'Application Deployed TO:${server} 
+                     """
+                }
+            }
+        }
 
     }   
     
