@@ -1,7 +1,9 @@
 pipeline {
+
     environment {
         FULL_PATH_BRANCH = "${sh(script:'git name-rev --name-only HEAD', returnStdout: true)}"
         BRANCH_NAME = FULL_PATH_BRANCH.substring(FULL_PATH_BRANCH.lastIndexOf('/') + 1, FULL_PATH_BRANCH.length())
+        ALREADY_EXISTS = "true"
     }
 
     agent any
@@ -23,7 +25,7 @@ pipeline {
                     script{
                         sh "echo ${env.BRANCH_NAME}"
 
-                        if ( "main" == BRANCH_NAME) { 
+                        if ( ALREADY_EXISTS == "true") { 
                             sh "echo inside if"
                             sh "pwd"
                             // This step need to add jenkins user to docker diamon permission
