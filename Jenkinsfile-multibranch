@@ -5,7 +5,7 @@ pipeline{
 
         stage("System-ENVS") {
             steps{
-                sh 'echo printenv | sort'
+                sh 'echo printenv'
             }
         }
 
