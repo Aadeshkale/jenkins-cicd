@@ -22,7 +22,7 @@ pipeline{
                     if (env.GIT_BRANCH == 'dev'){
                         
                         app_name =  'web-app-dev'
-                        artifactory = 'webapp/prod'
+                        artifactory = 'webapp/dev'
                         server = 'dev-server'
                     
                     }
