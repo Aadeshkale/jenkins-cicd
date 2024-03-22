@@ -53,6 +53,7 @@ pipeline{
         stage('Deployment app'){
             steps{
                 script{
+                    input message: 'Please checck and approve for prod deployment', submitter: 'admin', submitterParameter: 'apporve_by_admin'
                      sh """ 
                         echo 'Application Deployed TO:${server}'
                      """
