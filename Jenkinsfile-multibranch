@@ -5,14 +5,69 @@ pipeline{
 
         stage("System-ENVS") {
             steps{
-                sh """ printenv | sort 
-                echo 'Dev Trigged'
-
-                """
+                sh 'printenv | sort'
             }
         }
 
-        
+        stage("Set variables according to env"){
+            steps{
+                script{
+                    if (env.GIT_BRANCH == 'main'){
+                        
+                        app_name =  'web-app-prod'
+                        artifactory = 'webapp/prod'
+                        server = 'prod-server'
+                    
+                    }
+                    if (env.GIT_BRANCH == 'dev'){
+                        
+                        app_name =  'web-app-dev'
+                        artifactory = 'webapp/prod'
+                        server = 'dev-server'
+                    
+                    }
+
+                }
+
+            }
+
+        }
+
+        stage('Build Image'){
+            steps{
+                script{
+                    docker.build ("${app_name}:${env.BUILD_ID}", "./web-app") 
+                }
+            }
+        }
+        stage('Push Image to artifactory'){
+            steps{
+                script{
+                     sh """
+                        echo 'Image pushed to:${artifactory}'
+                     """
+                    //  sh "echo Image pushed to:${artifactory}"
+                }
+            }
+        }
+        stage('Deployment app'){
+            steps{
+                script{
+                     sh """ 
+                        echo 'Application Deployed TO:${server}'
+                     """
+                }
+            }
+        }
+
     }   
+    
+    post{
+        always{
+            cleanWs()
+            sh "docker system prune -f -a"     
+        }
+    
+    }
 
 }
