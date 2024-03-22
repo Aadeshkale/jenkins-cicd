@@ -36,7 +36,7 @@ pipeline{
         stage('Dependancy tracker check'){
             steps{
                 script{
-                    dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'Dep-checkk'
+                    dependencyCheck additionalArguments: '''--format XML --scan ./web-app''', odcInstallation: 'Dep-checkk'
                 }
             }
         }
