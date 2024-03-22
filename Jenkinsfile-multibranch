@@ -1,3 +1,6 @@
+// for dependency tracker needs OWASP Dependency-Check Plugin
+// for multibranch webhook needs Multibranch Scan Webhook Trigger
+
 pipeline{
     agent any
 
@@ -81,7 +84,7 @@ pipeline{
     
     post{
         always{
-            // cleanWs()
+            cleanWs()
             sh "docker system prune -f -a"     
         }
     
