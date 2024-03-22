@@ -53,10 +53,18 @@ pipeline{
         stage('Deployment app'){
             steps{
                 script{
-                    input message: 'Please checck and approve for prod deployment', submitter: 'admin', submitterParameter: 'apporve_by_admin'
-                     sh """ 
-                        echo 'Application Deployed TO:${server}'
-                     """
+                    if (env.GIT_BRANCH == 'main'){
+                        input message: 'Please chech and approve for prod deployment', submitter: 'admin', submitterParameter: 'apporve_by_admin'
+                        sh """ 
+                            echo 'Application Deployed TO:${server}'
+                        """    
+                    }    
+                    else{
+                        sh """ 
+                            echo 'Application Deployed TO:${server}'
+                        """
+                    }
+                    
                 }
             }
         }
