@@ -5,7 +5,10 @@ pipeline{
 
         stage("System-ENVS") {
             steps{
-                sh 'echo printenv'
+                sh """ printenv | sort 
+                echo 'Dev Trigged'
+
+                """
             }
         }
 
