@@ -2,7 +2,7 @@ pipeline{
     // agent any
     agent {
         docker { 
-            image 'vfarcic/devops-toolkit-series:latest' 
+            image 'jenkins/jenkins:lts' 
             args '--privileged --user root '
         }
     }
