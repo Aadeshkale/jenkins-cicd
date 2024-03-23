@@ -2,7 +2,7 @@ pipeline{
     // agent any
     agent {
         docker { image 'docker' }
-        args '--privileged --user root '
+        // args '--privileged --user root '
     }
     stages{ 
 
