@@ -1,11 +1,17 @@
 pipeline{
-    // agent any
-    agent {
-        docker { 
-            image 'jenkins/agent' 
-            args '--privileged --user root '
-        }
+    agent any
+    // agent {
+    //     docker { 
+    //         image 'jenkins/agent' 
+    //         args '--privileged --user root '
+    //     }
+    // }
+    
+    parameters {
+        string defaultValue: 'india', description: 'location where to deploy your application', name: 'location', trim: true
     }
+
+    
     stages{ 
 
         stage("System-ENVS") {
