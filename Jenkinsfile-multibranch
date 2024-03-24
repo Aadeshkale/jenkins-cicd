@@ -6,6 +6,9 @@ pipeline{
     //         args '--privileged --user root '
     //     }
     // }
+    options {
+            buildDiscarder(logRotator(numToKeepStr:'3',daysToKeepStr: '1'))
+    }
     
     parameters {
         string defaultValue: 'india', description: 'location where to deploy your application', name: 'location', trim: true
