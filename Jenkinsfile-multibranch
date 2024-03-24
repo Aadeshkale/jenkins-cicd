@@ -17,7 +17,7 @@ pipeline{
         stage("System-ENVS") {
             steps{
                 sh 'printenv | sort'
-                sh 'echo params.location'
+                sh 'echo ${params.location}'
             }
         }
 
