@@ -59,7 +59,7 @@ pipeline{
         stage('Scan image for vulnerabilities'){
             steps{
                 script{
-                    sh "trivy image --exit-code 1 --severity CRITICAL ${app_name}:${env.BUILD_ID}" 
+                    sh "trivy image --exit-code 1 --severity MEDIUM ${app_name}:${env.BUILD_ID}" 
                 }
             }
 
@@ -99,7 +99,7 @@ pipeline{
     post{
         always{
             cleanWs()
-            sh "docker system prune -f -a"     
+            sh "docker image rm ${app_name}:${env.BUILD_ID} -f"     
         }
     
     }
