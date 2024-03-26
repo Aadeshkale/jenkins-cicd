@@ -7,7 +7,7 @@ pipeline{
     //     }
     // }
     options {
-            buildDiscarder(logRotator(numToKeepStr:'10',daysToKeepStr: '1'))
+            buildDiscarder(logRotator(numToKeepStr:'3',daysToKeepStr: '1'))
     }
     
     parameters {
@@ -55,6 +55,16 @@ pipeline{
                 }
             }
         }
+        // For this stage trivy needs to installed in agent/node
+        stage('Scan image for vulnerabilities'){
+            steps{
+                script{
+                    sh "trivy image --exit-code 1 --severity CRITICAL ${app_name}:${env.BUILD_ID}" 
+                }
+            }
+
+        }
+
         stage('Push Image to artifactory'){
             steps{
                 script{
