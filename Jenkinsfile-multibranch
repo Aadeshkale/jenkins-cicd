@@ -44,6 +44,49 @@ pipeline{
                 }
             }
         }
+
+       // need to setup sonarqube plugins,connector,server,project and project-key
+       stage('SonarQube Analysis') {
+          steps{      
+              script{
+                 def scannerHome = tool name: 'scanner-name', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                 withSonarQubeEnv('sonar') {
+                        sh "echo $pwd"
+                        
+                        sh "${scannerHome}/bin/sonar-scanner \
+                            -D sonar.projectKey=py-scan \
+                            -D sonar.sourceEncoding=UTF-8 \
+                            -D sonar.language=python "
+                            // -D sonar.host.url=http://<URL>:9000"
+                        // sh "${scannerHome}/bin/sonar-scanner"
+                     
+                 }
+
+                  
+              }
+          }
+        }
+        
+        
+       // Need to create webhook in sonarqube 
+       stage("SonarQube Quality Gate Check") {
+            steps {
+                script {
+                def qualityGate = waitForQualityGate()
+                    
+                    if (qualityGate.status != 'OK') {
+                        echo "${qualityGate.status}"
+                        error "Quality Gate failed: ${qualityGateStatus}"
+                    }
+                    else {
+                        echo "${qualityGate.status}"
+                        echo "SonarQube Quality Gates Passed"
+                    }
+                }
+            }
+        } 
+
+
         stage('Build Image'){
             steps{
                 script{
